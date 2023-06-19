@@ -1,7 +1,8 @@
 const theme = {
   colors: {
-    primary: "#0070f3",
+    darkGrey: "#303030",
+    blue: "#0080FF",
   },
-};
+} as const;
 
 export default theme;

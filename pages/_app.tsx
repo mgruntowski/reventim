@@ -1,13 +1,16 @@
 import { ThemeProvider } from "styled-components";
 
 import { GlobalStyle, theme } from "styles";
+import { Main } from "ui/templates";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <GlobalStyle />
+        <Main>
+          <Component {...pageProps} />
+        </Main>
       </ThemeProvider>
     </>
   );
