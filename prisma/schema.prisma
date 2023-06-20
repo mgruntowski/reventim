@@ -14,8 +14,7 @@ model User {
   userId      String   @id @default(uuid())
   cpf         String   @unique
   firstName   String
-  lasrName    String
-  gender      String
+  lastName    String
   birthDate   DateTime
   email       String   @unique
   createdAt   DateTime @default(now())
@@ -23,7 +22,6 @@ model User {
   nickname    String
   address     String
   phone       String   @unique
-  pictureUrl  String
   tickets     Ticket[]
 }
 
