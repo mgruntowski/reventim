@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { parse } from "date-fns";
 
 import { useModal } from "hooks";
 import { Button, Column, Row } from "ui/atoms";
@@ -11,7 +13,6 @@ import { onlyNumbers } from "utils/string";
 import signUpValidation from "./validations";
 import { CPF_FORMATTED_LENGTH, formatCpf } from "utils/document";
 import { formatPhone } from "utils/phone";
-import { parse } from "date-fns";
 
 const SignUpForm = (): JSX.Element => {
   const { closeModal } = useModal();
@@ -60,10 +61,8 @@ const SignUpForm = (): JSX.Element => {
   };
 
   const onSubmit = async (values) => {
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    try {
+      const response = await axios.post("/api/user", {
         firstName: values.firstName,
         lastName: values.lastName,
         nickname: values.nickname,
@@ -73,10 +72,12 @@ const SignUpForm = (): JSX.Element => {
         address: values.address,
         email: values.email,
         password: values.password,
-      }),
-    });
+      });
 
-    console.log("response ->", response);
+      console.log("Response ->", response);
+    } catch (err) {
+      console.log("err ->", err);
+    }
   };
 
   return (
