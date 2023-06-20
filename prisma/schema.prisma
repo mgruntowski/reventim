@@ -22,6 +22,7 @@ model User {
   nickname    String
   address     String
   phone       String   @unique
+	password		String
   tickets     Ticket[]
 }
 
