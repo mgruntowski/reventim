@@ -60,9 +60,7 @@ const SignUpForm = (): JSX.Element => {
   };
 
   const onSubmit = async (values) => {
-    console.log("values ->", values);
-
-    await fetch("/api/user", {
+    const response = await fetch("/api/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -77,6 +75,8 @@ const SignUpForm = (): JSX.Element => {
         password: values.password,
       }),
     });
+
+    console.log("response ->", response);
   };
 
   return (
