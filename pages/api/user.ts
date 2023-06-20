@@ -10,13 +10,16 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
     const result = await prisma.user.create({
       data: { ...data },
     });
-    res.json(result);
+
+    res.status(200).json(result);
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
         res.status(409).json({ message: "Usuário já cadastrado." });
       }
     }
+
+    res.json(err);
   }
 };
 
