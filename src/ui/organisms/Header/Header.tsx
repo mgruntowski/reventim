@@ -27,6 +27,7 @@ const Header = (): JSX.Element => {
 
         <Column flex={2}>
           <Input
+            name="search"
             placeholder="Pesquise por artistas e eventos..."
             buttonLabel="Pesquisar"
           />

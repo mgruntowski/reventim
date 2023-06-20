@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: ${({ theme }) => theme.colors.darkGrey};
+    background-color: ${({ theme }) => theme.colors.darkerGrey};
   }
 
   * {
@@ -23,8 +23,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  h1 {
+  h1, label {
     font-family: 'Lato', sans-serif;
+  }
+
+  h1, span, p, input, label {
+    color: ${({ theme }) => theme.colors.darkerGrey}
   }
 `;
 
