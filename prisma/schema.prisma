@@ -1,0 +1,80 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  userId      String   @id @default(uuid())
+  cpf         String   @unique
+  firstName   String
+  lasrName    String
+  gender      String
+  birthDate   DateTime
+  email       String   @unique
+  createdAt   DateTime @default(now())
+  discardedAt DateTime
+  nickname    String
+  address     String
+  phone       String   @unique
+  pictureUrl  String
+  tickets     Ticket[]
+}
+
+model Ticket {
+  ticketId    String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  discardedAt DateTime
+  soldAt      DateTime
+  batch       Batch    @relation(fields: [batchId], references: [batchId])
+  batchId     String
+  user        User     @relation(fields: [userId], references: [userId])
+  userId      String
+}
+
+model Batch {
+  batchId   String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  price     Int
+  name      String
+  order     Int
+  section   Section  @relation(fields: [sectionId], references: [sectionId])
+  sectionId String
+  tickets   Ticket[]
+}
+
+model Section {
+  sectionId String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String
+  event     Event    @relation(fields: [eventId], references: [eventId])
+  eventId   String
+  batches   Batch[]
+}
+
+model Event {
+  eventId        String    @id @default(uuid())
+  createdAt      DateTime  @default(now())
+  discardedAt    DateTime
+  name           String
+  date           DateTime
+  zipCode        Int
+  federalUnit    String
+  city           String
+  street         String
+  neighborhodod  String
+  number         Int
+  complement     String
+  locationName   String
+  producer       String
+  performer      String
+  pictureUrl     String
+  sectionsMapUrl String
+  sections       Section[]
+}
