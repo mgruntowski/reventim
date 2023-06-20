@@ -4,8 +4,9 @@
   "description": "",
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "build": "npx prisma generate && next build",
+    "start": "next start",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.0",
-    "styled-components": "5.0.1",
+    "styled-components": "5.0.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

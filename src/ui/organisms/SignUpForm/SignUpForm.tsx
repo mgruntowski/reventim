@@ -11,6 +11,7 @@ import { onlyNumbers } from "utils/string";
 import signUpValidation from "./validations";
 import { CPF_FORMATTED_LENGTH, formatCpf } from "utils/document";
 import { formatPhone } from "utils/phone";
+import { parse } from "date-fns";
 
 const SignUpForm = (): JSX.Element => {
   const { closeModal } = useModal();
@@ -58,8 +59,24 @@ const SignUpForm = (): JSX.Element => {
     closeModal();
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     console.log("values ->", values);
+
+    await fetch("/api/user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: values.firstName,
+        lastName: values.lastName,
+        nickname: values.nickname,
+        birthDate: parse(values.birthDate, "dd/MM/yyyy", new Date()),
+        cpf: onlyNumbers(values.cpf),
+        phone: onlyNumbers(values.phone),
+        address: values.address,
+        email: values.email,
+        password: values.password,
+      }),
+    });
   };
 
   return (
