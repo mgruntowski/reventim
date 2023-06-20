@@ -3,12 +3,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "lib/prisma";
 
 const handle = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("req.body ->", req.body);
+  const data = req.body;
 
   const result = await prisma.user.create({
-    data: req.body,
+    data: { ...data },
   });
-  console.log("result ->", result);
 
   res.json(result);
 };
