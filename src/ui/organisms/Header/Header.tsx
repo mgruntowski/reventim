@@ -1,10 +1,23 @@
+import Image from "next/image";
+
+import { useModal } from "hooks";
 import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 
+import LoginForm from "../LoginForm";
 import * as Styled from "./styles";
-import Image from "next/image";
 
 const Header = (): JSX.Element => {
+  const { openModal } = useModal();
+
+  const handleClick = () => {
+    openModal(<LoginForm />, {
+      title: "Login",
+      variant: "light",
+      width: "500px",
+    });
+  };
+
   return (
     <Styled._Header>
       <Row>
@@ -20,7 +33,7 @@ const Header = (): JSX.Element => {
         </Column>
 
         <Column alignItems="flex-end">
-          <Button variant="text" onClick={() => {}}>
+          <Button variant="text" onClick={handleClick}>
             Fazer login
           </Button>
         </Column>

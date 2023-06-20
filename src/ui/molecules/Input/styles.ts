@@ -6,6 +6,7 @@ export const _Container = styled.div`
 
   width: 100%;
   height: 42.5px;
+  border-radius: 4px;
 `;
 
 export const _Input = styled.input`
@@ -15,7 +16,7 @@ export const _Input = styled.input`
   padding: ${spacings.x1} ${spacings.x2};
   box-sizing: border-box;
 
-  border: none;
+  border: 1px solid ${({ theme }) => theme.colors.darkGrey};
   border-radius: 4px;
 
   font-size: 16px;

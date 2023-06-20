@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    font-synthesis: none;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -17,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
+  }
+
+  h1 {
+    font-family: 'Lato', sans-serif;
   }
 `;
 

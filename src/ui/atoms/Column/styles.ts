@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import spacings from "styles/spacings";
 
 export type StyleProps = {
   flex?: number;
@@ -10,6 +11,7 @@ export type StyleProps = {
     | "space-around"
     | "space-between"
     | "space-evenly";
+  gap?: keyof typeof spacings;
 };
 
 export const _Column = styled.div<StyleProps>`
@@ -17,6 +19,9 @@ export const _Column = styled.div<StyleProps>`
   flex-direction: column;
   align-items: ${({ alignItems = "center" }) => alignItems};
   justify-content: ${({ justifyContent = "center" }) => justifyContent};
+  box-sizing: border-box;
+
+  gap: ${({ gap = "x0" }) => spacings[gap]};
 
   flex: ${({ flex = 1 }) => flex};
 `;

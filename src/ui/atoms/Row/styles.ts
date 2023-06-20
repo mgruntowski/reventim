@@ -18,6 +18,7 @@ export const _Row = styled.div<StyleProps>`
   display: flex;
   align-items: ${({ alignItems = "center" }) => alignItems};
   justify-content: ${({ justifyContent = "space-between" }) => justifyContent};
+  box-sizing: border-box;
 
   gap: ${({ gap = "x0" }) => spacings[gap]};
 

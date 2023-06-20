@@ -1,5 +1,6 @@
 import { ThemeProvider } from "styled-components";
 
+import { ModalProvider } from "contexts";
 import { GlobalStyle, theme } from "styles";
 import { Main } from "ui/templates";
 
@@ -8,9 +9,11 @@ export default function App({ Component, pageProps }) {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Main>
-          <Component {...pageProps} />
-        </Main>
+        <ModalProvider>
+          <Main>
+            <Component {...pageProps} />
+          </Main>
+        </ModalProvider>
       </ThemeProvider>
     </>
   );

@@ -3,25 +3,16 @@ import { PropsWithChildren } from "react";
 import * as Styled from "./styles";
 import { withBoxProps } from "hocs";
 
-type Props = PropsWithChildren<{
-  className?: string;
-  variant: keyof typeof Styled.buttonVariants;
-  onClick: () => void;
-}>;
+type Props = PropsWithChildren<
+  {
+    className?: string;
+    onClick: () => void;
+  } & Styled.StyleProps
+>;
 
-const Button = ({
-  className,
-  onClick,
-  variant,
-  children,
-}: Props): JSX.Element => {
+const Button = ({ onClick, children, ...props }: Props): JSX.Element => {
   return (
-    <Styled._Button
-      className={className}
-      type="button"
-      variant={variant}
-      onClick={onClick}
-    >
+    <Styled._Button type="button" onClick={onClick} {...props}>
       {children}
     </Styled._Button>
   );
