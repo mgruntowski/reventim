@@ -1,13 +1,15 @@
 import { PropsWithChildren } from "react";
 import { Header } from "ui/organisms";
 
+import * as Styled from "./styles";
+
 type Props = PropsWithChildren<{}>;
 
 const Main = ({ children }: Props): JSX.Element => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <Styled._MainContainer>{children}</Styled._MainContainer>
     </>
   );
 };

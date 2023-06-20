@@ -1,5 +1,6 @@
 const spacings = {
   x0: 0,
+  x025: "2px",
   x05: "4px",
   x1: "8px",
   x2: "16px",

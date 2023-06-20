@@ -2,13 +2,14 @@ import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 
 import * as Styled from "./styles";
+import Image from "next/image";
 
 const Header = (): JSX.Element => {
   return (
     <Styled._Header>
       <Row>
         <Column alignItems="flex-start">
-          <div></div>
+          <Image width="200px" height="57px" src="/img/reventim-logo.png" />
         </Column>
 
         <Column flex={2}>
