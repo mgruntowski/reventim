@@ -15,6 +15,7 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
+        console.log("deveria retornar aqui");
         res.status(409).json({ message: "Usuário já cadastrado." });
       }
     }
