@@ -11,17 +11,17 @@ datasource db {
 }
 
 model User {
-  userId      String   @id @default(uuid())
-  cpf         String   @unique
+  userId      String    @id @default(uuid())
+  cpf         String    @unique
   firstName   String
   lastName    String
   birthDate   DateTime
-  email       String   @unique
-  createdAt   DateTime @default(now())
-  discardedAt DateTime
-  nickname    String
-  address     String
-  phone       String   @unique
+  email       String    @unique
+  createdAt   DateTime  @default(now())
+  discardedAt DateTime?
+  nickname    String?
+  address     String?
+  phone       String    @unique
   password    String
   tickets     Ticket[]
 }
