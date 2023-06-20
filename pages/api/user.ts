@@ -7,13 +7,13 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
 
   try {
-    const result = await prisma.user.create({
+    await prisma.user.create({
       data: { ...data },
     });
 
     console.log("tentou enviar aqui");
 
-    res.status(200).json(result);
+    res.status(200);
   } catch (err) {
     console.log(
       "instance ->",
@@ -28,11 +28,10 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("deveria retornar aqui");
         res.status(409).json({ message: "Usuário já cadastrado." });
       }
+    } else {
+      console.log("ultimo console log");
+      res.json(err);
     }
-
-    console.log("ultimo console log");
-
-    res.json(err);
   }
 };
 
