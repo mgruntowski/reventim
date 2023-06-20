@@ -13,7 +13,11 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json(result);
   } catch (err) {
-    console.log(err);
+    console.log(
+      "is instance ->",
+      err instanceof Prisma.PrismaClientKnownRequestError
+    );
+    console.log("code ->", err.code);
 
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
