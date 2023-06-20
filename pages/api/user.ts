@@ -11,6 +11,8 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
       data: { ...data },
     });
 
+    console.log("tentou enviar aqui");
+
     res.status(200).json(result);
   } catch (err) {
     console.log(
@@ -27,6 +29,8 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(409).json({ message: "Usuário já cadastrado." });
       }
     }
+
+    console.log("ultimo console log");
 
     res.json(err);
   }
