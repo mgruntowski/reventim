@@ -33,7 +33,7 @@ const AvailableTickets = ({ data, eventName }: Props): JSX.Element => {
       <TicketsList
         data={data}
         eventName={eventName}
-        buttonLabel="Ver informações de contato"
+        buttonLabel="Ver contato"
         onButtonClick={onTicketClick}
       />
     </Column>
