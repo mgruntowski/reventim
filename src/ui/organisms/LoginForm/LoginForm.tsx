@@ -1,4 +1,4 @@
-import { useLoading, useLocalStorage, useModal } from "hooks";
+import { useLoading, useModal } from "hooks";
 import { Button, Column, Divider, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 import SignUpForm from "../SignUpForm";
@@ -13,8 +13,6 @@ const LoginForm = (): JSX.Element => {
   const { openModal, closeModal } = useModal();
   const { showLoading, hideLoading } = useLoading();
   const userStore = useUserStore();
-
-  const [_, setUser] = useLocalStorage("user", {});
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -45,7 +43,10 @@ const LoginForm = (): JSX.Element => {
 
       const { nickname, firstName, userId } = res.data;
 
-      setUser({ nickname, firstName, userId });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ nickname, firstName, userId })
+      );
       userStore.setUser({ nickname, firstName, userId });
       closeModal();
 

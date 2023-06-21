@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Row } from "ui/atoms";
 
 export const _Container = styled(Row)`
-  background-color: ${({ theme }) => theme.colors.darkGrey};
+  background-color: ${({ theme }) => theme.colors.blueGrey};
 `;
 
 export const _Date = styled.span`

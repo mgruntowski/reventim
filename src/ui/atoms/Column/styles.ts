@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import spacings from "styles/spacings";
 
 export type StyleProps = {
@@ -12,6 +12,7 @@ export type StyleProps = {
     | "space-between"
     | "space-evenly";
   gap?: keyof typeof spacings;
+  maxWidth?: string;
 };
 
 export const _Column = styled.div<StyleProps>`
@@ -24,4 +25,10 @@ export const _Column = styled.div<StyleProps>`
   gap: ${({ gap = "x0" }) => spacings[gap]};
 
   flex: ${({ flex = 1 }) => flex};
+
+  ${({ maxWidth }) =>
+    maxWidth &&
+    css`
+      max-width: ${maxWidth};
+    `}
 `;

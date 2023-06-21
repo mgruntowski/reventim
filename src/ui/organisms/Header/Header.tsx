@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 
-import { useLocalStorage, useModal } from "hooks";
+import { useModal } from "hooks";
 import { useUserStore } from "stores";
 import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
@@ -14,11 +14,12 @@ import TicketsList from "../TicketsList";
 const Header = (): JSX.Element => {
   const { openModal } = useModal();
   const { user, setUser } = useUserStore();
-  const [localStorageUser, setLocalStorageUser] = useLocalStorage("user", {});
 
   useEffect(() => {
+    const localStorageUser = localStorage.getItem("user");
+
     if (!user && localStorageUser) {
-      setUser(localStorageUser);
+      setUser(JSON.parse(localStorageUser));
     }
   }, []);
 
@@ -31,7 +32,7 @@ const Header = (): JSX.Element => {
   };
 
   const handleLogout = () => {
-    setLocalStorageUser("");
+    localStorage.removeItem("user");
     setUser(null);
     toast.success("Logout realizado com sucesso!");
   };
