@@ -7,7 +7,11 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
     const event = await prisma.event.findFirst({
       where: { eventId: req.query.eventId as string },
       include: {
-        sections: true,
+        sections: {
+          include: {
+            batches: true,
+          },
+        },
       },
     });
 
