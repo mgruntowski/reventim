@@ -9,6 +9,7 @@ import { Input } from "ui/molecules";
 
 import LoginForm from "../LoginForm";
 import * as Styled from "./styles";
+import TicketsList from "../TicketsList";
 
 const Header = (): JSX.Element => {
   const { openModal } = useModal();
@@ -35,7 +36,13 @@ const Header = (): JSX.Element => {
     toast.success("Logout realizado com sucesso!");
   };
 
-  const handleMyTickets = () => {};
+  const handleMyTickets = () => {
+    openModal(<TicketsList />, {
+      title: "Meus ingressos",
+      variant: "dark",
+      width: "1000px",
+    });
+  };
 
   return (
     <Styled._Header>
@@ -54,13 +61,15 @@ const Header = (): JSX.Element => {
 
         {user ? (
           <Column alignItems="flex-end">
-            <Button variant="text" onClick={handleMyTickets}>
-              Meus ingressos
-            </Button>
+            <Row gap="x2">
+              <Button variant="text" onClick={handleMyTickets}>
+                Meus ingressos
+              </Button>
 
-            <Button variant="text" onClick={handleLogout}>
-              Sair
-            </Button>
+              <Button variant="text" onClick={handleLogout}>
+                Sair
+              </Button>
+            </Row>
           </Column>
         ) : (
           <Column alignItems="flex-end">

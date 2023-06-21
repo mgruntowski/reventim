@@ -17,7 +17,7 @@ export const _Input = styled.input<{ withError?: boolean }>`
   padding: ${spacings.x1} ${spacings.x2};
   box-sizing: border-box;
 
-  border: 1px solid ${({ theme }) => theme.colors.darkGrey};
+  border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: 4px;
 
   font-size: 16px;
@@ -52,7 +52,7 @@ export const _Label = styled.label`
 `;
 
 export const _SecondaryLabel = styled.span`
-  color: ${({ theme }) => theme.colors.darkGrey};
+  color: ${({ theme }) => theme.colors.grey};
 
   text-transform: none;
 `;
