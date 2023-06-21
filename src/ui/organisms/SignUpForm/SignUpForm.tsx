@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { parse } from "date-fns";
 
-import { useModal } from "hooks";
+import { useLoading, useModal } from "hooks";
 import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 import { formatDate } from "utils/date";
@@ -16,6 +17,7 @@ import { formatPhone } from "utils/phone";
 
 const SignUpForm = (): JSX.Element => {
   const { closeModal } = useModal();
+  const { showLoading, hideLoading } = useLoading();
 
   const {
     control,
@@ -60,9 +62,11 @@ const SignUpForm = (): JSX.Element => {
     closeModal();
   };
 
-  const onSubmit = async (values) => {
+  const onValidationSuccess = async (values) => {
+    showLoading();
+
     try {
-      const response = await axios.post("/api/user", {
+      await axios.post("/api/user", {
         firstName: values.firstName,
         lastName: values.lastName,
         nickname: values.nickname,
@@ -74,10 +78,17 @@ const SignUpForm = (): JSX.Element => {
         password: values.password,
       });
 
-      console.log("Response ->", response);
+      toast.success("Cadastro realizado com sucesso!");
+
+      hideLoading();
+      closeModal();
     } catch (err) {
-      console.log("err ->", err);
+      toast.error(err.response.data?.message);
     }
+  };
+
+  const onValidationError = () => {
+    toast.error("Erro no formulário, verifique os campos preenchidos.");
   };
 
   return (
@@ -172,7 +183,7 @@ const SignUpForm = (): JSX.Element => {
 
         <Button
           variant="primary"
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onValidationSuccess, onValidationError)}
           minWidth="160px"
         >
           Cadastrar

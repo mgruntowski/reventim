@@ -11,7 +11,7 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
       data: { ...data },
     });
 
-    res.status(200);
+    res.status(200).json({});
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
