@@ -27,13 +27,13 @@ model User {
 }
 
 model Ticket {
-  ticketId    String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  discardedAt DateTime
-  soldAt      DateTime
-  batch       Batch    @relation(fields: [batchId], references: [batchId])
+  ticketId    String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  discardedAt DateTime?
+  soldAt      DateTime?
+  batch       Batch     @relation(fields: [batchId], references: [batchId])
   batchId     String
-  user        User     @relation(fields: [userId], references: [userId])
+  user        User      @relation(fields: [userId], references: [userId])
   userId      String
 }
 
@@ -58,22 +58,19 @@ model Section {
 }
 
 model Event {
-  eventId        String    @id @default(uuid())
-  createdAt      DateTime  @default(now())
-  discardedAt    DateTime
-  name           String
-  date           DateTime
-  zipCode        Int
-  federalUnit    String
-  city           String
-  street         String
-  neighborhodod  String
-  number         Int
-  complement     String
-  locationName   String
-  producer       String
-  performer      String
-  pictureUrl     String
-  sectionsMapUrl String
-  sections       Section[]
+  eventId      String    @id @default(uuid())
+  createdAt    DateTime  @default(now())
+  discardedAt  DateTime?
+  name         String
+  date         DateTime
+  zipCode      Int
+  federalUnit  String
+  city         String
+  street       String
+  neighborhood String
+  number       Int
+  complement   String?
+  locationName String
+  pictureUrl   String
+  sections     Section[]
 }
