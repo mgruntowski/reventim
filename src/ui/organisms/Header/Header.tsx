@@ -1,6 +1,9 @@
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import Image from "next/image";
 
-import { useModal } from "hooks";
+import { useLocalStorage, useModal } from "hooks";
+import { useUserStore } from "stores";
 import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 
@@ -9,14 +12,30 @@ import * as Styled from "./styles";
 
 const Header = (): JSX.Element => {
   const { openModal } = useModal();
+  const { user, setUser } = useUserStore();
+  const [localStorageUser, setLocalStorageUser] = useLocalStorage("user", {});
 
-  const handleClick = () => {
+  useEffect(() => {
+    if (!user && localStorageUser) {
+      setUser(localStorageUser);
+    }
+  }, []);
+
+  const handleLogin = () => {
     openModal(<LoginForm />, {
       title: "Login",
       variant: "light",
       width: "500px",
     });
   };
+
+  const handleLogout = () => {
+    setLocalStorageUser("");
+    setUser(null);
+    toast.success("Logout realizado com sucesso!");
+  };
+
+  const handleMyTickets = () => {};
 
   return (
     <Styled._Header>
@@ -33,11 +52,23 @@ const Header = (): JSX.Element => {
           />
         </Column>
 
-        <Column alignItems="flex-end">
-          <Button variant="text" onClick={handleClick}>
-            Fazer login
-          </Button>
-        </Column>
+        {user ? (
+          <Column alignItems="flex-end">
+            <Button variant="text" onClick={handleMyTickets}>
+              Meus ingressos
+            </Button>
+
+            <Button variant="text" onClick={handleLogout}>
+              Sair
+            </Button>
+          </Column>
+        ) : (
+          <Column alignItems="flex-end">
+            <Button variant="text" onClick={handleLogin}>
+              Fazer login
+            </Button>
+          </Column>
+        )}
       </Row>
     </Styled._Header>
   );
