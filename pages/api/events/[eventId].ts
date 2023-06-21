@@ -9,7 +9,11 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
       include: {
         sections: {
           include: {
-            batches: true,
+            batches: {
+              include: {
+                tickets: true,
+              },
+            },
           },
         },
       },
