@@ -6,7 +6,7 @@ type Props = {
   data: Event;
 };
 
-const EventById = ({ data }: Props): JSX.Element => <>{data.name}</>;
+const EventById = ({ data }: Props): JSX.Element => <>nada</>;
 
 // export const getStaticPaths: GetStaticPaths = async () => {
 //   const response = await fetch("https://reventim.vercel.app/api/events");
