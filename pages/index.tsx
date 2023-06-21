@@ -1,4 +1,4 @@
-import { Event } from "interfaces";
+import { Event } from "@prisma/client";
 import { GetStaticProps } from "next";
 
 import { Banners } from "ui/organisms";

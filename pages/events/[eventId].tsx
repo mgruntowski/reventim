@@ -1,6 +1,6 @@
+import { Event } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { Event } from "interfaces";
 import { EventInfo } from "ui/organisms";
 
 type Props = {

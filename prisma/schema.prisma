@@ -14,7 +14,6 @@ model User {
   userId      String    @id @default(uuid())
   cpf         String    @unique
   firstName   String
-  lastName    String
   birthDate   DateTime
   email       String    @unique
   createdAt   DateTime  @default(now())
@@ -22,6 +21,7 @@ model User {
   nickname    String?
   address     String?
   phone       String    @unique
+  lastName    String
   password    String
   tickets     Ticket[]
 }
@@ -31,10 +31,10 @@ model Ticket {
   createdAt   DateTime  @default(now())
   discardedAt DateTime?
   soldAt      DateTime?
-  batch       Batch     @relation(fields: [batchId], references: [batchId])
   batchId     String
-  user        User      @relation(fields: [userId], references: [userId])
   userId      String
+  batch       Batch     @relation(fields: [batchId], references: [batchId])
+  user        User      @relation(fields: [userId], references: [userId])
 }
 
 model Batch {
@@ -43,8 +43,8 @@ model Batch {
   price     Int
   name      String
   order     Int
-  section   Section  @relation(fields: [sectionId], references: [sectionId])
   sectionId String
+  section   Section  @relation(fields: [sectionId], references: [sectionId])
   tickets   Ticket[]
 }
 
@@ -52,9 +52,9 @@ model Section {
   sectionId String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
-  event     Event    @relation(fields: [eventId], references: [eventId])
   eventId   String
   batches   Batch[]
+  event     Event    @relation(fields: [eventId], references: [eventId])
 }
 
 model Event {
@@ -67,10 +67,10 @@ model Event {
   federalUnit  String
   city         String
   street       String
-  neighborhood String
   number       Int
   complement   String?
   locationName String
   pictureUrl   String
+  neighborhood String
   sections     Section[]
 }

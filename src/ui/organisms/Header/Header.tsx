@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import { useModal } from "hooks";
 import { useUserStore } from "stores";
@@ -8,12 +9,14 @@ import { Button, Column, Row } from "ui/atoms";
 import { Input } from "ui/molecules";
 
 import LoginForm from "../LoginForm";
+import MyTickets from "../MyTickets";
 import * as Styled from "./styles";
-import TicketsList from "../TicketsList";
 
 const Header = (): JSX.Element => {
   const { openModal } = useModal();
   const { user, setUser } = useUserStore();
+
+  const router = useRouter();
 
   useEffect(() => {
     const localStorageUser = localStorage.getItem("user");
@@ -22,6 +25,10 @@ const Header = (): JSX.Element => {
       setUser(JSON.parse(localStorageUser));
     }
   }, []);
+
+  const handleLogoClick = () => {
+    router.push("/");
+  };
 
   const handleLogin = () => {
     openModal(<LoginForm />, {
@@ -38,7 +45,7 @@ const Header = (): JSX.Element => {
   };
 
   const handleMyTickets = () => {
-    openModal(<TicketsList />, {
+    openModal(<MyTickets />, {
       title: "Meus ingressos",
       variant: "dark",
       width: "1000px",
@@ -49,7 +56,12 @@ const Header = (): JSX.Element => {
     <Styled._Header>
       <Row>
         <Column alignItems="flex-start">
-          <Image width="200px" height="57px" src="/img/reventim-logo.png" />
+          <Image
+            width="200px"
+            height="57px"
+            src="/img/reventim-logo.png"
+            onClick={handleLogoClick}
+          />
         </Column>
 
         <Column flex={2}>

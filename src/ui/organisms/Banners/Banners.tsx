@@ -1,9 +1,10 @@
+import { Event } from "@prisma/client";
+import { useRouter } from "next/router";
+
 import { Button, Column, Row } from "ui/atoms";
 
 import Banner from "./components/Banner";
 import * as Styled from "./styles";
-import { useRouter } from "next/router";
-import { Event } from "interfaces";
 
 type Props = {
   data: Event[];

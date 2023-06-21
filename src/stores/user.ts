@@ -1,8 +1,11 @@
+import { Prisma } from "@prisma/client";
 import { create } from "zustand";
 
 interface UserState {
-  user: any;
-  setUser: (user: any) => void;
+  user: Partial<Prisma.UserGetPayload<{ include: { tickets: true } }>>;
+  setUser: (
+    user: Partial<Prisma.UserGetPayload<{ include: { tickets: true } }>>
+  ) => void;
 }
 
 const useUserStore = create<UserState>((set) => ({

@@ -1,7 +1,11 @@
+export { default as AvailableTickets } from "./AvailableTickets";
 export { default as Banners } from "./Banners";
+export { default as DealerInfo } from "./DealerInfo";
 export { default as EventInfo } from "./EventInfo";
 export { default as EventsList } from "./EventsList";
 export { default as Header } from "./Header";
 export { default as LoginForm } from "./LoginForm";
+export { default as MyTickets } from "./MyTickets";
 export { default as SignUpForm } from "./SignUpForm";
+export { default as TermsAcceptance } from "./TermsAcceptance";
 export { default as TicketsList } from "./TicketsList";

@@ -41,13 +41,13 @@ const LoginForm = (): JSX.Element => {
         password: values.password,
       });
 
-      const { nickname, firstName, userId } = res.data;
+      const { nickname, firstName, userId, tickets } = res.data;
 
       localStorage.setItem(
         "user",
-        JSON.stringify({ nickname, firstName, userId })
+        JSON.stringify({ nickname, firstName, userId, tickets })
       );
-      userStore.setUser({ nickname, firstName, userId });
+      userStore.setUser({ nickname, firstName, userId, tickets });
       closeModal();
 
       toast.success("Login efetuado com sucesso!");

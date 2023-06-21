@@ -1,22 +1,45 @@
-import { Button, Column, Row } from "ui/atoms";
+import { Ticket as ITicket, Prisma } from "@prisma/client";
+
 import Ticket from "./components/Ticket";
 
-const TicketsList = (): JSX.Element => {
-  return (
-    <Column pl="x3" pr="x3" pt="x2" pb="x4" gap="x1">
-      <Ticket data={{ createdAt: "15 mai 2015", eventName: "Foo Fighters" }} />
-      <Ticket data={{ createdAt: "15 mai 2015", eventName: "Foo Fighters" }} />
-      <Ticket data={{ createdAt: "15 mai 2015", eventName: "Foo Fighters" }} />
-      <Ticket data={{ createdAt: "15 mai 2015", eventName: "Foo Fighters" }} />
-      <Ticket data={{ createdAt: "15 mai 2015", eventName: "Foo Fighters" }} />
-
-      <Row fullWidth justifyContent="flex-end">
-        <Button variant="primary" onClick={() => {}} mt="x3">
-          Cadastrar ingresso
-        </Button>
-      </Row>
-    </Column>
-  );
+type Props = {
+  data:
+    | ITicket[]
+    | Prisma.TicketGetPayload<{
+        include: {
+          batch: { include: { section: { include: { event: true } } } };
+        };
+      }>[];
+  eventName?: string;
+  buttonLabel: string;
+  onButtonClick: (ticketId: string) => void;
 };
+
+const TicketsList = ({
+  data,
+  eventName,
+  buttonLabel,
+  onButtonClick,
+}: Props): JSX.Element => (
+  <>
+    {data.slice(0, 10).map(
+      (
+        ticket: Prisma.TicketGetPayload<{
+          include: {
+            batch: { include: { section: { include: { event: true } } } };
+          };
+        }>
+      ) => (
+        <Ticket
+          key={ticket.ticketId}
+          data={ticket}
+          eventName={eventName || ticket.batch.section.event.name}
+          buttonLabel={buttonLabel}
+          onButtonClick={() => onButtonClick(ticket.ticketId)}
+        />
+      )
+    )}
+  </>
+);
 
 export default TicketsList;

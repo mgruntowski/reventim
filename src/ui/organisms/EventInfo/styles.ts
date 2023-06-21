@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import spacings from "styles/spacings";
+
 import { Row } from "ui/atoms";
 
 export const _ImageContainer = styled.div`
@@ -13,8 +14,9 @@ export const _EventName = styled.span`
   text-transform: uppercase;
   font-size: 28px;
   font-weight: 500;
-  line-height: 40px;
+  line-height: 30px;
   margin-top: ${spacings.x2};
+  margin-bottom: ${spacings.x1};
 `;
 
 export const _EventDetails = styled.span`
@@ -26,8 +28,12 @@ export const _EventDetails = styled.span`
 
 export const _EventItem = styled(Row)`
   background-color: ${({ theme }) => theme.colors.blueGrey};
-  color: ${({ theme }) => theme.colors.white};
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 500;
+  cursor: pointer;
+
+  & > span {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
