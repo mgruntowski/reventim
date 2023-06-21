@@ -1,10 +1,18 @@
-import { Event } from "@prisma/client";
+import { Event, Prisma } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import { EventInfo } from "ui/organisms";
 
 type Props = {
-  data: Event;
+  data: Prisma.EventGetPayload<{
+    include: {
+      sections: {
+        include: {
+          batches: { include: { tickets: { include: { user: true } } } };
+        };
+      };
+    };
+  }>;
 };
 
 const EventById = ({ data }: Props): JSX.Element => <EventInfo data={data} />;
