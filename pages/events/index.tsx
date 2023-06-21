@@ -1,13 +1,13 @@
-import { Event } from "interfaces";
 import { GetStaticProps } from "next";
 
-import { Banners } from "ui/organisms";
+import { Event } from "interfaces";
+import { EventsList } from "ui/organisms";
 
 type Props = {
   data: Event[];
 };
 
-const Home = ({ data }: Props): JSX.Element => <Banners data={data} />;
+const Events = ({ data }: Props): JSX.Element => <EventsList data={data} />;
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch("https://reventim.vercel.app/api/events");
@@ -21,4 +21,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Home;
+export default Events;

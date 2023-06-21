@@ -1,11 +1,15 @@
-import events from "mocks/events";
 import { Button, Column, Row } from "ui/atoms";
 
 import Banner from "./components/Banner";
 import * as Styled from "./styles";
 import { useRouter } from "next/router";
+import { Event } from "interfaces";
 
-const Banners = (): JSX.Element => {
+type Props = {
+  data: Event[];
+};
+
+const Banners = ({ data }: Props): JSX.Element => {
   const router = useRouter();
 
   const redirectToAllEvents = () => {
@@ -16,7 +20,7 @@ const Banners = (): JSX.Element => {
     <Column>
       <Styled._Container justifyContent="center">
         <Row justifyContent="flex-start" gap="x025">
-          {events.map((event) => (
+          {data.map((event) => (
             <Banner key={event.eventId} data={event} />
           ))}
         </Row>
