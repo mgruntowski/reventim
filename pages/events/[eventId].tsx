@@ -1,12 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import { Event } from "interfaces";
+import { EventInfo } from "ui/organisms";
 
 type Props = {
   data: Event;
 };
 
-const EventById = ({ data }: Props): JSX.Element => <>{data.name}</>;
+const EventById = ({ data }: Props): JSX.Element => <EventInfo data={data} />;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch("https://reventim.vercel.app/api/events");

@@ -6,6 +6,9 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const event = await prisma.event.findFirst({
       where: { eventId: req.query.eventId as string },
+      include: {
+        sections: true,
+      },
     });
 
     res.status(200).json(event);

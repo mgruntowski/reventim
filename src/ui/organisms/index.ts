@@ -1,4 +1,5 @@
 export { default as Banners } from "./Banners";
+export { default as EventInfo } from "./EventInfo";
 export { default as EventsList } from "./EventsList";
 export { default as Header } from "./Header";
 export { default as LoginForm } from "./LoginForm";
