@@ -11,7 +11,11 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
           include: {
             batches: {
               include: {
-                tickets: true,
+                tickets: {
+                  include: {
+                    user: true,
+                  },
+                },
               },
             },
           },
